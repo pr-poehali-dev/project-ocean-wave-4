@@ -24,47 +24,47 @@ export default function Index() {
   }
 
   const commands = [
-    "flux init --ai-powered",
-    "flux generate --model gpt-5 --context full",
-    "flux review --agent claude-4 --interactive",
-    "flux deploy --env production --optimize",
+    "flux chat --model claude-4-sonnet",
+    "flux code --fix src/auth.ts --smart",
+    "flux review --pr 142 --agent gpt-5",
+    "flux deploy --env production --zero-downtime",
   ]
 
   const terminalSequences = [
     {
-      command: "flux init --ai-powered",
+      command: "flux chat --model claude-4-sonnet",
       outputs: [
-        "Инициализация проекта FLUX CLI...",
-        "Установка зависимостей...",
-        "Настройка AI-моделей...",
-        "Проект успешно создан!",
+        "Подключение к claude-4-sonnet...",
+        "Контекст проекта загружен (847 файлов)...",
+        "Режим диалога активирован...",
+        "Готов к работе. Задайте вопрос!",
       ],
     },
     {
-      command: "flux generate --model gpt-5 --context full",
+      command: "flux code --fix src/auth.ts --smart",
       outputs: [
-        "Загрузка модели GPT-5...",
-        "Анализ контекста проекта...",
-        "Генерация кода...",
-        "Генерация завершена!",
+        "Анализ файла src/auth.ts...",
+        "Обнаружено 3 уязвимости и 2 улучшения...",
+        "Применяю исправления с объяснениями...",
+        "✓ Код улучшен. PR готов к ревью!",
       ],
     },
     {
-      command: "flux review --agent claude-4 --interactive",
+      command: "flux review --pr 142 --agent gpt-5",
       outputs: [
-        "Запуск интерактивного ревью...",
-        "Claude-4 анализирует изменения...",
-        "Формирование рекомендаций...",
-        "Сессия ревью активна!",
+        "Загрузка PR #142 (23 файла, +841 -302)...",
+        "GPT-5 анализирует изменения...",
+        "Генерирую детальные комментарии...",
+        "✓ Ревью опубликовано в GitHub!",
       ],
     },
     {
-      command: "flux deploy --env production --optimize",
+      command: "flux deploy --env production --zero-downtime",
       outputs: [
-        "Сборка для production...",
-        "Оптимизация бандла...",
-        "Деплой на production...",
-        "Деплой завершён!",
+        "Сборка и оптимизация бандла...",
+        "Прогон тестов: 247/247 прошли...",
+        "Blue-green деплой на production...",
+        "✓ Деплой завершён без простоя!",
       ],
     },
   ]
@@ -205,7 +205,7 @@ export default function Index() {
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex items-center gap-2 text-gray-500 text-xs">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span>v2.1.0</span>
+              <span>v3.0.0</span>
             </div>
 
             <div
@@ -221,19 +221,19 @@ export default function Index() {
                     <Copy className="w-4 h-4 text-gray-400" />
                   )}
                   <span className="text-gray-400">$</span>
-                  <span>Установить</span>
+                  <span>npm install -g flux-cli</span>
                 </div>
               </div>
             </div>
-
-            <button className="md:hidden text-gray-400 hover:text-white transition-colors">
-              <div className="w-6 h-6 flex flex-col justify-center gap-1">
-                <div className="w-full h-0.5 bg-current transition-all duration-300"></div>
-                <div className="w-full h-0.5 bg-current transition-all duration-300"></div>
-                <div className="w-full h-0.5 bg-current transition-all duration-300"></div>
-              </div>
-            </button>
           </div>
+
+          <button className="md:hidden text-gray-400 hover:text-white transition-colors">
+            <div className="w-6 h-6 flex flex-col justify-center gap-1">
+              <div className="w-full h-0.5 bg-current transition-all duration-300"></div>
+              <div className="w-full h-0.5 bg-current transition-all duration-300"></div>
+              <div className="w-full h-0.5 bg-current transition-all duration-300"></div>
+            </div>
+          </button>
         </div>
       </nav>
 
@@ -257,14 +257,16 @@ export default function Index() {
             </div>
 
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-              Создан, чтобы помочь вам <span className="text-gray-400 animate-pulse">деплоить</span>,
+              Весь ваш AI-стек —{" "}
+              <span className="text-gray-400 animate-pulse">одна команда</span>,
               <br />
               прямо из{" "}
               <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">терминала</span>.
             </h1>
 
             <p className="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto mb-8">
-              Используйте в IDE или любом терминале. Одни команды, любое окружение. Интегрируется в любой рабочий процесс. Полный контроль из терминала.
+              FLUX CLI объединяет GPT-5, Claude 4, Gemini и Grok в единый инструмент. Пишите, проверяйте,
+              деплойте — без переключения вкладок. Один инструмент для всего вашего AI-workflow.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -308,7 +310,7 @@ export default function Index() {
                     <div className="w-3 h-3 bg-yellow-500 hover:bg-yellow-400 transition-colors cursor-pointer"></div>
                     <div className="w-3 h-3 bg-green-500 hover:bg-green-400 transition-colors cursor-pointer"></div>
                   </div>
-                  <span className="text-gray-400 text-sm">flux-terminal</span>
+                  <span className="text-gray-400 text-sm">flux-terminal — ~/my-project</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -321,7 +323,7 @@ export default function Index() {
                   {terminalLines.map((line, index) => (
                     <div
                       key={index}
-                      className={`${line.startsWith("user@dev") ? "text-white" : "text-gray-300"} ${line.includes("успешно") || line.includes("завершен") || line.includes("активна") ? "text-green-400" : ""}`}
+                      className={`${line.startsWith("user@dev") ? "text-white" : "text-gray-300"} ${line.includes("✓") ? "text-green-400" : ""}`}
                     >
                       {line}
                     </div>
@@ -331,7 +333,7 @@ export default function Index() {
                     <div className="text-white">
                       <span className="text-green-400">user@dev</span>
                       <span className="text-gray-500">:</span>
-                      <span className="text-blue-400">~/project</span>
+                      <span className="text-blue-400">~/my-project</span>
                       <span className="text-white">$ </span>
                       <span className="text-white">{currentTyping}</span>
                       <span className={`text-white ${showCursor ? "opacity-100" : "opacity-0"} transition-opacity`}>
@@ -360,12 +362,12 @@ export default function Index() {
 
                 <div className="mt-6 pt-4 border-t border-gray-800 flex justify-between text-xs text-gray-500">
                   <div className="flex items-center gap-4">
-                    <span className="text-gray-500">Команд выполнено:</span>
+                    <span className="text-gray-500">Задач выполнено:</span>
                     <span className="text-white">{currentCommand + 1}</span>
                   </div>
                   <div className="flex items-center gap-4">
-                    <span className="text-gray-500">AI-модели:</span>
-                    <span className="text-gray-500">Активны</span>
+                    <span className="text-gray-500">AI-агент:</span>
+                    <span className="text-green-400">Активен</span>
                   </div>
                   <div className="flex items-center gap-4">
                     <span className="text-gray-500">Статус:</span>
@@ -378,13 +380,95 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Features Section */}
+      <section className="px-6 py-16 lg:px-12 border-t border-gray-800" id="features">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4">Всё, что нужно разработчику</h2>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Один инструмент заменяет десятки AI-сервисов. Никаких лишних вкладок и API-ключей.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: "⚡",
+                title: "Мгновенные ответы",
+                desc: "Задавайте вопросы по коду прямо в терминале. Контекст всего проекта загружается автоматически.",
+                cmd: "flux ask \"как работает auth?\"",
+                key: "ask-cmd",
+              },
+              {
+                icon: "🔍",
+                title: "Умное ревью",
+                desc: "AI анализирует PR и оставляет детальные комментарии в GitHub. Баги находятся до мержа.",
+                cmd: "flux review --pr HEAD",
+                key: "review-cmd",
+              },
+              {
+                icon: "🛠",
+                title: "Автофикс кода",
+                desc: "Находит и исправляет ошибки, уязвимости и code smells с объяснением каждого изменения.",
+                cmd: "flux fix --all --explain",
+                key: "fix-cmd",
+              },
+              {
+                icon: "📝",
+                title: "Генерация тестов",
+                desc: "Покрывает ваш код тестами автоматически. Unit, integration и e2e — любой формат.",
+                cmd: "flux test --generate src/",
+                key: "test-cmd",
+              },
+              {
+                icon: "📄",
+                title: "Авто-документация",
+                desc: "Генерирует и обновляет README, JSDoc и API-документацию при каждом изменении кода.",
+                cmd: "flux docs --update --sync",
+                key: "docs-cmd",
+              },
+              {
+                icon: "🚀",
+                title: "Zero-downtime деплой",
+                desc: "Blue-green деплой с авто-откатом. Прогоняет тесты и мониторит метрики после выкатки.",
+                cmd: "flux deploy --safe",
+                key: "safe-cmd",
+              },
+            ].map((feature) => (
+              <div key={feature.key} className="group relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-800/50 to-gray-900/50 transform rotate-0.5 group-hover:rotate-1 transition-transform duration-300"></div>
+                <div className="relative bg-black border border-gray-800 p-6 hover:border-gray-600 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-white/5 h-full flex flex-col">
+                  <div className="text-2xl mb-3">{feature.icon}</div>
+                  <h3 className="text-lg font-bold mb-2 text-white">{feature.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-1">{feature.desc}</p>
+                  <div
+                    className="bg-gray-900 border border-gray-700 p-2.5 font-mono text-xs text-left hover:border-gray-500 transition-colors cursor-pointer flex items-center justify-between"
+                    onClick={() => copyToClipboard(feature.cmd, feature.key)}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-500">$ </span>
+                      <span className="text-white">{feature.cmd}</span>
+                    </div>
+                    {copiedStates[feature.key] ? (
+                      <Check className="w-3 h-3 text-green-400 flex-shrink-0" />
+                    ) : (
+                      <Copy className="w-3 h-3 text-gray-400 hover:text-white transition-colors flex-shrink-0" />
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Integrations Section */}
       <section className="px-6 py-16 lg:px-12 border-t border-gray-800" id="integrations">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">Поддержка всех IDE</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4">Работает в вашем окружении</h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              FLUX CLI работает везде. Одна установка, безграничные возможности.
+              FLUX CLI встраивается в любой редактор и CI/CD. Одна установка — и всё работает.
             </p>
           </div>
 
@@ -397,7 +481,7 @@ export default function Index() {
                     <div className="w-3 h-3 bg-yellow-500"></div>
                     <div className="w-3 h-3 bg-green-500"></div>
                   </div>
-                  <span className="text-gray-400 text-sm">flux ide --list</span>
+                  <span className="text-gray-400 text-sm">flux env --scan</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -406,16 +490,16 @@ export default function Index() {
               </div>
 
               <div className="p-6 bg-black">
-                <div className="text-sm text-gray-400 mb-4">$ flux ide --scan</div>
+                <div className="text-sm text-gray-400 mb-4">$ flux env --list-supported</div>
 
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 font-mono text-sm mb-6">
                   {[
-                    { name: "cursor", status: "v", desc: "AI-редактор" },
-                    { name: "vscode", status: "v", desc: "Microsoft VS Code" },
-                    { name: "jetbrains", status: "v", desc: "Семейство IntelliJ" },
-                    { name: "android-studio", status: "v", desc: "Android-разработка" },
-                    { name: "vim/neovim", status: "v", desc: "Терминальные редакторы" },
-                    { name: "intellij", status: "v", desc: "Java-разработка" },
+                    { name: "cursor", status: "✓", desc: "AI-редактор" },
+                    { name: "vscode", status: "✓", desc: "Microsoft VS Code" },
+                    { name: "jetbrains", status: "✓", desc: "Семейство IntelliJ" },
+                    { name: "github-actions", status: "✓", desc: "CI/CD пайплайн" },
+                    { name: "vim / neovim", status: "✓", desc: "Терминальные редакторы" },
+                    { name: "gitlab-ci", status: "✓", desc: "GitLab CI/CD" },
                   ].map((ide) => (
                     <div
                       key={ide.name}
@@ -438,19 +522,19 @@ export default function Index() {
                   <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div className="text-sm text-gray-400">
                       <div className="font-mono text-xs text-gray-500 space-y-1">
-                        <div>$ flux ide --install-all # Настроить все IDE</div>
-                        <div>$ flux ide --status # Проверить интеграцию</div>
+                        <div>$ flux env --setup vscode   # Установить расширение</div>
+                        <div>$ flux env --setup ci        # Настроить CI/CD</div>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-4 text-xs text-gray-500">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span>6 активно</span>
+                        <span>6 платформ</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <span>Без настройки</span>
+                        <span>Plug & play</span>
                       </div>
                     </div>
                   </div>
@@ -461,7 +545,7 @@ export default function Index() {
             <div className="mt-4 text-center">
               <div className="inline-flex items-center gap-2 text-gray-400 text-sm">
                 <span className="text-green-400">*</span>
-                <span>Универсальная совместимость - Мгновенная настройка - Работает везде</span>
+                <span>Универсальная совместимость · Мгновенная настройка · Работает везде</span>
               </div>
             </div>
           </div>
@@ -472,8 +556,8 @@ export default function Index() {
       <section className="px-6 py-20 lg:px-12 border-t border-gray-800" id="models">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6">Новейшие AI-модели</h2>
-            <p className="text-xl text-gray-400">Выбирайте AI-модель прямо из терминала</p>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6">Лучшие AI-модели — под рукой</h2>
+            <p className="text-xl text-gray-400">Переключайтесь между моделями одним флагом. Без регистраций.</p>
           </div>
 
           <div className="max-w-4xl mx-auto">
@@ -485,7 +569,7 @@ export default function Index() {
                     <div className="w-3 h-3 bg-yellow-500"></div>
                     <div className="w-3 h-3 bg-green-500"></div>
                   </div>
-                  <span className="text-gray-400 text-sm">flux model select</span>
+                  <span className="text-gray-400 text-sm">flux model --list</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -494,16 +578,16 @@ export default function Index() {
               </div>
 
               <div className="p-6 bg-black">
-                <div className="text-sm text-gray-400 mb-4">$ flux model --list</div>
+                <div className="text-sm text-gray-400 mb-4">$ flux model --list --verbose</div>
 
                 <div className="space-y-2 font-mono text-sm">
                   {[
-                    { id: "1", name: "gpt-5", provider: "openai", status: "*", color: "text-green-400" },
-                    { id: "2", name: "claude-4-sonnet", provider: "anthropic", status: "*", color: "text-green-400" },
-                    { id: "3", name: "claude-4.1-opus", provider: "anthropic", status: "*", color: "text-green-400" },
-                    { id: "4", name: "o3", provider: "openai", status: "*", color: "text-green-400" },
-                    { id: "5", name: "gemini-2.5-pro", provider: "google", status: "*", color: "text-green-400" },
-                    { id: "6", name: "grok-4", provider: "xai", status: "*", color: "text-green-400" },
+                    { id: "1", name: "gpt-5", provider: "openai", status: "●", color: "text-green-400", note: "Лучший для кода" },
+                    { id: "2", name: "claude-4-sonnet", provider: "anthropic", status: "●", color: "text-green-400", note: "Быстрый и точный" },
+                    { id: "3", name: "claude-4-opus", provider: "anthropic", status: "●", color: "text-green-400", note: "Глубокий анализ" },
+                    { id: "4", name: "o3", provider: "openai", status: "●", color: "text-green-400", note: "Цепочки рассуждений" },
+                    { id: "5", name: "gemini-2.5-pro", provider: "google", status: "●", color: "text-green-400", note: "Большой контекст" },
+                    { id: "6", name: "grok-4", provider: "xai", status: "●", color: "text-green-400", note: "Реальное время" },
                   ].map((model) => (
                     <div
                       key={model.id}
@@ -517,8 +601,8 @@ export default function Index() {
                         <span className="text-white group-hover:text-gray-200 transition-colors">{model.name}</span>
                         <span className="text-gray-500 text-xs">({model.provider})</span>
                       </div>
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity text-gray-500 text-xs">
-                        Нажмите {model.id} для выбора
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity text-gray-400 text-xs">
+                        {model.note}
                       </div>
                     </div>
                   ))}
@@ -527,26 +611,22 @@ export default function Index() {
                 <div className="mt-6 pt-4 border-t border-gray-800">
                   <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div className="text-sm text-gray-400">
-                      <div className="mb-2">Использование:</div>
+                      <div className="mb-2">Примеры использования:</div>
                       <div className="font-mono text-xs text-gray-500 space-y-1">
-                        <div>$ flux generate --model gpt-5 "Создать React-компонент"</div>
-                        <div>$ flux model set claude-4-sonnet # По умолчанию</div>
-                        <div>$ flux model status # Проверить модели</div>
+                        <div>$ flux chat --model claude-4-opus "разбери этот алгоритм"</div>
+                        <div>$ flux model set gpt-5          # Установить по умолчанию</div>
+                        <div>$ flux model benchmark          # Сравнить скорость ответа</div>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-6 text-xs text-gray-500">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span>4 активно</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                        <span>2 ожидают</span>
+                        <span>6 активно</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 bg-gray-500 rounded-full animate-pulse"></div>
-                        <span>Авто-синхронизация</span>
+                        <span>Авто-обновление</span>
                       </div>
                     </div>
                   </div>
@@ -557,7 +637,7 @@ export default function Index() {
             <div className="mt-6 text-center">
               <div className="inline-flex items-center gap-2 text-gray-400 text-sm">
                 <span className="text-green-400">*</span>
-                <span>Модели обновляются автоматически - Настройка не требуется</span>
+                <span>Модели обновляются автоматически · Один ключ для всех · Без лимитов</span>
               </div>
             </div>
           </div>
@@ -568,9 +648,10 @@ export default function Index() {
       <section className="px-6 py-20 lg:px-12 border-t border-gray-800 bg-gray-950/30" id="docs">
         <div className="max-w-5xl mx-auto text-center">
           <div className="mb-12">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6">Готовы ускориться?</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6">Начните за 30 секунд</h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Пишите мощные скрипты и автоматизации. Автоматически обновляйте документацию, запускайте проверки безопасности или создавайте собственных AI-агентов.
+              Установите FLUX CLI, запустите первую команду и почувствуйте, как работает настоящий AI-ассистент
+              для разработчика. Без регистрации, без лишних настроек.
             </p>
           </div>
 
@@ -583,20 +664,20 @@ export default function Index() {
                     <div className="w-12 h-12 mx-auto mb-4 bg-gray-900 border border-gray-600 flex items-center justify-center group-hover:border-white transition-colors group-hover:bg-gray-800">
                       <span className="text-lg font-mono text-white group-hover:text-gray-100">01</span>
                     </div>
-                    <h3 className="text-lg font-bold mb-3 text-white group-hover:text-gray-100">Инициализация</h3>
+                    <h3 className="text-lg font-bold mb-3 text-white group-hover:text-gray-100">Установите</h3>
                     <p className="text-gray-400 mb-4 group-hover:text-gray-300 text-sm leading-relaxed">
-                      Создавайте AI-проекты без настройки
+                      Одна команда — и FLUX CLI готов к работе
                     </p>
                   </div>
                   <div
                     className="bg-gray-900 border border-gray-700 p-2.5 font-mono text-xs text-left group-hover:border-gray-500 transition-colors group-hover:bg-gray-800 cursor-pointer flex items-center justify-between"
-                    onClick={() => copyToClipboard("flux init", "init-cmd")}
+                    onClick={() => copyToClipboard("npm install -g flux-cli", "install-step")}
                   >
                     <div className="flex items-center gap-2">
                       <span className="text-gray-500">$ </span>
-                      <span className="text-white group-hover:text-gray-100">flux init</span>
+                      <span className="text-white group-hover:text-gray-100">npm install -g flux-cli</span>
                     </div>
-                    {copiedStates["init-cmd"] ? (
+                    {copiedStates["install-step"] ? (
                       <Check className="w-3 h-3 text-green-400" />
                     ) : (
                       <Copy className="w-3 h-3 text-gray-400 hover:text-white transition-colors" />
@@ -614,20 +695,20 @@ export default function Index() {
                     <div className="w-12 h-12 mx-auto mb-4 bg-gray-900 border border-gray-600 flex items-center justify-center group-hover:border-white transition-colors group-hover:bg-gray-800">
                       <span className="text-lg font-mono text-white group-hover:text-gray-100">02</span>
                     </div>
-                    <h3 className="text-lg font-bold mb-3 text-white group-hover:text-gray-100">Генерация</h3>
+                    <h3 className="text-lg font-bold mb-3 text-white group-hover:text-gray-100">Авторизуйтесь</h3>
                     <p className="text-gray-400 mb-4 group-hover:text-gray-300 text-sm leading-relaxed">
-                      Создавайте код с новейшими AI-моделями
+                      Войдите один раз — доступ ко всем моделям
                     </p>
                   </div>
                   <div
                     className="bg-gray-900 border border-gray-700 p-2.5 font-mono text-xs text-left group-hover:border-gray-500 transition-colors group-hover:bg-gray-800 cursor-pointer flex items-center justify-between"
-                    onClick={() => copyToClipboard("flux generate", "generate-cmd")}
+                    onClick={() => copyToClipboard("flux auth login", "auth-step")}
                   >
                     <div className="flex items-center gap-2">
                       <span className="text-gray-500">$ </span>
-                      <span className="text-white group-hover:text-gray-100">flux generate</span>
+                      <span className="text-white group-hover:text-gray-100">flux auth login</span>
                     </div>
-                    {copiedStates["generate-cmd"] ? (
+                    {copiedStates["auth-step"] ? (
                       <Check className="w-3 h-3 text-green-400" />
                     ) : (
                       <Copy className="w-3 h-3 text-gray-400 hover:text-white transition-colors" />
@@ -645,20 +726,20 @@ export default function Index() {
                     <div className="w-12 h-12 mx-auto mb-4 bg-gray-900 border border-gray-600 flex items-center justify-center group-hover:border-white transition-colors group-hover:bg-gray-800">
                       <span className="text-lg font-mono text-white group-hover:text-gray-100">03</span>
                     </div>
-                    <h3 className="text-lg font-bold mb-3 text-white group-hover:text-gray-100">Деплой</h3>
+                    <h3 className="text-lg font-bold mb-3 text-white group-hover:text-gray-100">Работайте</h3>
                     <p className="text-gray-400 mb-4 group-hover:text-gray-300 text-sm leading-relaxed">
-                      Выкатывайте в production с авто-оптимизацией
+                      Задайте первый вопрос AI прямо из терминала
                     </p>
                   </div>
                   <div
                     className="bg-gray-900 border border-gray-700 p-2.5 font-mono text-xs text-left group-hover:border-gray-500 transition-colors group-hover:bg-gray-800 cursor-pointer flex items-center justify-between"
-                    onClick={() => copyToClipboard("flux deploy", "deploy-cmd")}
+                    onClick={() => copyToClipboard('flux chat "Привет, FLUX!"', "start-step")}
                   >
                     <div className="flex items-center gap-2">
                       <span className="text-gray-500">$ </span>
-                      <span className="text-white group-hover:text-gray-100">flux deploy</span>
+                      <span className="text-white group-hover:text-gray-100">flux chat "Привет, FLUX!"</span>
                     </div>
-                    {copiedStates["deploy-cmd"] ? (
+                    {copiedStates["start-step"] ? (
                       <Check className="w-3 h-3 text-green-400" />
                     ) : (
                       <Copy className="w-3 h-3 text-gray-400 hover:text-white transition-colors" />
@@ -675,7 +756,7 @@ export default function Index() {
               <div className="relative border-2 border-white bg-white text-black font-bold px-8 sm:px-16 py-4 sm:py-5 text-lg sm:text-xl transition-all duration-300 group-hover:bg-gray-100 group-hover:text-black transform translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 text-center">
                 <div className="flex items-center justify-center gap-2 sm:gap-3">
                   <span className="text-gray-600 text-base sm:text-lg">&gt;</span>
-                  <span className="text-base sm:text-lg">Начать сейчас</span>
+                  <span className="text-base sm:text-lg">Начать бесплатно</span>
                 </div>
               </div>
             </Link>
@@ -699,8 +780,8 @@ export default function Index() {
       <footer className="border-t border-gray-800 px-6 py-12 lg:px-12 bg-gray-950">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
-            <div className="text-gray-600 text-lg mb-4">Создано разработчиками для разработчиков.</div>
-            <div className="text-gray-700 text-sm">FLUX CLI. Деплой быстрее. Код лучше.</div>
+            <div className="text-gray-600 text-lg mb-4">Создан разработчиками для разработчиков.</div>
+            <div className="text-gray-700 text-sm">FLUX CLI · Весь AI — одна команда · Код становится лучше.</div>
           </div>
         </div>
       </footer>
